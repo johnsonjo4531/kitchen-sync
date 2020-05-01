@@ -1,0 +1,5 @@
+{
+	"imports": {
+		"kitchen-sync": "./src/index.ts"
+	}
+}
