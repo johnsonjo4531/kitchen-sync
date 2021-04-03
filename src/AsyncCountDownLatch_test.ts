@@ -2,7 +2,7 @@ import { AsyncCountDownLatch } from "./AsyncCountDownLatch.ts";
 import { assertEquals, test } from "./dev_deps.ts";
 import { sleep } from "./utils.ts";
 
-test(async function countDownLatchUnlatched() {
+test("CountDownLatch unlatches", async function countDownLatchUnlatched() {
 	const latches = 3;
 	const expected = "countdownLatch undone";
 	const unexpected = "countdownLatch still latched";
@@ -20,7 +20,7 @@ test(async function countDownLatchUnlatched() {
 	await Promise.all([waiting, result]);
 });
 
-test(async function countDownLatchStillLatched() {
+test("CountDownLatch stays latched", async function countDownLatchStillLatched() {
 	const latches = 3;
 	const expected = "countdownLatch still latched";
 	const unexpected = "countdownLatch undone";

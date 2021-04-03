@@ -2,17 +2,18 @@
 
 # ⚠️ WARNING: ⚠️
 
-This is an experimental alpha-level library with some low-level concurrency primitives. Just beware of potential dead-locks due to your own or this library's bugs. Feel free to use it and give any feedback as well as issues and pull-requests.
+This is an experimental pre-alpha-level library with some low-level concurrency primitives. Just beware of potential dead-locks due to your own or this library's bugs. I make absolutly no guarentees about the stability of the concurrency APIs in this project. Feel free to use it and give any feedback as well as issues and pull-requests. When it comes to concurrency I know very little at the moment and am no expert.
 
 # Intro
 
 This library is a collection of experimental Async Utilities that allow you to take control of wild concurrent async functions in JavaScript. Below is the table of contents which shows what this library contains:
 
 - [Kitchen-Sync](#kitchen-sync)
-- [⚠️ WARNING: ⚠️](#%e2%9a%a0%ef%b8%8f-warning-%e2%9a%a0%ef%b8%8f)
+- [⚠️ WARNING: ⚠️](#️-warning-️)
 - [Intro](#intro)
 - [Tour](#tour)
-- [API](#api) - [AsyncBarrier](#asyncbarrier)
+- [API](#api)
+	- [AsyncBarrier](#asyncbarrier)
 - [See Also](#see-also)
 
 # Tour
@@ -108,8 +109,10 @@ import { AsyncLock } from "kitchen-sync";
 import { green, red, bold } from "https://deno.land/std@v0.38.0/fmt/colors.ts";
 import { assertEquals as _assertEquals } from "https://deno.land/std@v0.38.0/testing/asserts.ts";
 ///============= Library Code ================
+// THIS LINE WAS ADDED
 var testLock = AsyncLock(_assertEquals);
 async function test(fn: (assert: typeof _assertEquals) => any) {
+	// THIS LINE WAS ADDED
 	for await (const assert of testLock) {
 		try {
 			console.group(`test: ${fn.name}`);
@@ -157,9 +160,13 @@ test: threeAnd4
 */
 ```
 
-// TODO:
 
-type
+
+----
+
+
+
+Importing kitchen-sync depends on if you're using deno or node.
 
 ```ts
 import "kitchen-sync";

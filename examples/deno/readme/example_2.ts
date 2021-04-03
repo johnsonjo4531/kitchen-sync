@@ -1,8 +1,7 @@
 ///============= Library Code ================
-const _assertEquals = (expected: string, actual: string) => {
+const _assertEquals = (expected: any, actual: any) => {
 	if (expected !== actual) {
-		// BAD PRACTICE YOU SHOULDN'T NORMALLY THROW STRINGS
-		throw `AssertionError: Expected not equal to actual\nExpected:${expected}\nActual:${actual}`;
+		throw `AssertionError: Expected not equal to actual\nExpected:${String(expected)}\nActual:${String(actual)}`;
 	}
 };
 export async function test(fn: (assertEquals: typeof _assertEquals) => any) {

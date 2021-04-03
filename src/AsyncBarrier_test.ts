@@ -2,7 +2,7 @@ import { AsyncBarrier } from "./AsyncBarrier.ts";
 import { assertEquals, test } from "./dev_deps.ts";
 import { sleep } from "./utils.ts";
 
-test(async function asyncBarrierManyAwaitsWithinBarrier() {
+test("AsyncBarrier many awaits within barrier", async function asyncBarrierManyAwaitsWithinBarrier() {
 	const arr: number[] = [];
 	const barrier = AsyncBarrier(2);
 	const p1 = (async () => {
@@ -33,7 +33,7 @@ test(async function asyncBarrierManyAwaitsWithinBarrier() {
 	assertEquals(arr, [1, 1, 2, 2, 3, 3]);
 });
 
-test(async function asyncBarrierManyWaitsOnBarriers() {
+test("AsyncBarrier many waits on barriers", async function asyncBarrierManyWaitsOnBarriers() {
 	const arr: number[] = [];
 	const barrier = AsyncBarrier(5);
 	const doStuff = async () => {
@@ -55,7 +55,7 @@ test(async function asyncBarrierManyWaitsOnBarriers() {
 	assertEquals(arr, [1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3]);
 });
 
-test(async function asyncBarrierManyWaitsOnBarriers() {
+test("AsyncBarrier with many waits on barriers", async function asyncBarrierManyWaitsOnBarriers() {
 	const arr: number[] = [];
 	const barrier = AsyncBarrier(5);
 	const doStuff = async () => {

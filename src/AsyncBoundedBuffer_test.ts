@@ -2,7 +2,7 @@ import { AsyncBoundedBuffer } from "./AsyncBoundedBuffer.ts";
 import { assertEquals, test } from "./dev_deps.ts";
 import { sleep } from "./utils.ts";
 
-test(async function boundedBufferActsLikeAsyncQueue() {
+test("BoundedBuffer can act like an AsyncQueue", async function boundedBufferActsLikeAsyncQueue() {
 	const arr: number[] = [];
 	const buffer = AsyncBoundedBuffer<number>();
 	const expected = 3.14159;
@@ -13,7 +13,7 @@ test(async function boundedBufferActsLikeAsyncQueue() {
 	assertEquals(await promiseItem, expected);
 });
 
-test(async function boundedBufferWaitsForEnqueuement() {
+test("BoundedBuffer waits for enqueuement", async function boundedBufferWaitsForEnqueuement() {
 	const arr: number[] = [];
 	const queue = AsyncBoundedBuffer();
 	const queueExpected = 3.14159;
@@ -29,7 +29,7 @@ test(async function boundedBufferWaitsForEnqueuement() {
 	assertEquals(await promiseItem, queueExpected);
 });
 
-test(async function boundedBufferWaitsForDequeues() {
+test("BoundedBuffer waits for Dequeues", async function boundedBufferWaitsForDequeues() {
 	const arr: number[] = [];
 	const queue = AsyncBoundedBuffer();
 	const bufferSize = 128;

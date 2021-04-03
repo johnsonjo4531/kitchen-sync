@@ -1,9 +1,9 @@
 {
 	"name": "kitchen-sync",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "async utilities for concurrent programming",
-	"main": "dist/script.js",
-	"types": "dist/index.d.ts",
+	"main": "dist/kitchen-sync.js",
+	"types": "dist/kitchen-sync.d.ts",
 	"author": "John D. Johnson II",
 	"scripts": {
 		"link": "./link-self.bash"
@@ -15,7 +15,8 @@
 		"@babel/core": "^7.9.0",
 		"@babel/preset-typescript": "^7.9.0",
 		"ts-loader": "^6.2.2",
-		"typescript": "^3.8.3",
+		"tsutils": "^3.17.1",
+		"typescript": "^4.0.2",
 		"webpack": "^4.42.1",
 		"webpack-cli": "^3.3.11"
 	}

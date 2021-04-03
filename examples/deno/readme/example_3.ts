@@ -3,22 +3,22 @@ import { AsyncLock } from "kitchen-sync";
 const green = (str: string) => `\x1b[32m${str}\x1b[39m`;
 const bold = (str: string) => `\x1b[1m${str}\x1b[22m`;
 const red = (str: string) => `\x1b[31m${str}\x1b[39m`;
-const _assertEquals = (expected: string, actual: string) => {
+const _assertEquals = (expected: any, actual: any) => {
 	if (expected !== actual) {
 		// BAD PRACTICE YOU SHOULDN'T NORMALLY THROW STRINGS
-		throw `AssertionError: Expected not equal to actual\n${"Expected: " +
-			expected}\n${"Actual: " + actual}`;
+		throw `AssertionError: Expected not equal to actual\n\t${"Expected: " +
+			String(expected)}\n\t${"Actual: " + String(actual)}`;
 	}
 };
 const originalConsole = self.console;
 const consoleCapture = (function captureConsole() {
-	const logs: { type: keyof __console.Console, args: any[] }[] = [];
+	const logs: { type: keyof Console, args: any[] }[] = [];
 	return {
 		capture() {
 			self.console = new Proxy(self.console, {
-				get(target, property: keyof __console.Console, receiver) {
-					return new Proxy(target[property], {
-						apply(target, thisArg, argArray) {
+				get(target, property: keyof Console, _receiver: any) {
+					return new Proxy(target[property] as any, {
+						apply(target: any, thisArg: any, argArray: any) {
 							logs.push({ type: property, args: argArray });
 						}
 					})
@@ -28,7 +28,10 @@ const consoleCapture = (function captureConsole() {
 		release() {
 			self.console = originalConsole;
 			for (const { args, type } of logs) {
-				(originalConsole?.[type] as any)?.apply?.(originalConsole, ...args);
+				const origType = originalConsole?.[type]
+				if(typeof origType === "function") {
+					(origType as any).call(originalConsole, ...args);
+				}
 			}
 		}
 	}
@@ -37,18 +40,22 @@ var testLock = AsyncLock(_assertEquals);
 async function test(fn: (assert: typeof _assertEquals) => any) {
 	for await (const assert of testLock) {
 		let passed = true;
+
 		try {
 			consoleCapture.capture();
 			await fn(assert);
-			consoleCapture.release();
-			console.log(green(bold("✔ group tests passed")));
 		} catch (err) {
-			console.error(err);
+			passed = false
+			// console.error(err);
 		} finally {
-			if()
 			console.group(`test: ${fn.name}`);
+			consoleCapture.release();
+			if(passed) {
+				console.log(green(bold("✔ group tests passed")));
+			} else {
+				console.log(red(bold("❌ group tests failed")));
+			}
 			console.groupEnd();
-			console.log(red(bold("❌ group tests failed")));
 		}
 	}
 }
@@ -56,6 +63,7 @@ async function test(fn: (assert: typeof _assertEquals) => any) {
 ///============= Code Usage (imagine this as a separate module including the above code) ================
 var sleep = (ms: number) => new Promise(res => setTimeout(res, ms));
 test(async function oneAnd2(assertEquals) {
+	console.log("FOO");
 	assertEquals(1, 1);
 	await sleep(1000);
 	assertEquals(2, 2);

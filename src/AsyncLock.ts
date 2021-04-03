@@ -3,7 +3,7 @@ import { AsyncQueue } from "./AsyncQueue.ts";
 /**
  * @param resource
  */
-export function AsyncLock<T = any>(resource: T) {
+export function AsyncLock<T extends any= any>(resource: T) {
 	const mutex = AsyncQueue<T>();
 	// provide one user to access the resource
 	let count = 1;

@@ -1,0 +1,18 @@
+TAP version 13
+1..10
+ok 1 - 5
+ok 2 - 6
+ok 3 - 7
+ok 4 - 8
+ok 5 - 0
+ok 6 - 9
+ok 7 - 1
+ok 8 - 2
+ok 9 - 3
+ok 10 - 4
+  ---
+  Test statistics:
+    failedTests: NONE
+    passed: 10
+    failed: 0
+  ...

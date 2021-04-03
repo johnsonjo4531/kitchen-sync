@@ -1,1 +1,15 @@
 node_modules/
+src/
+examples/
+*.bash
+tsconfig.json
+import_map.json
+yarn-error.log
+.vscode/
+webpack.config.js
+babel.config.json
+rome.json
+.prettierrc
+.editorconfig
+run_example.ts
+*.tgz

@@ -2,7 +2,7 @@ import { AsyncLock } from "./AsyncLock.ts";
 import { assertEquals, test } from "./dev_deps.ts";
 import { sleep } from "./utils.ts";
 
-test(async function asyncLock() {
+test("AsyncLock", async function asyncLock() {
 	const arr: number[] = [];
 	const resource = 3.14;
 	const lock = AsyncLock(resource);

@@ -2,7 +2,7 @@ import { Semaphore } from "./Semaphore.ts";
 import { assertEquals, test } from "./dev_deps.ts";
 import { sleep } from "./utils.ts";
 
-test(async function semaphoreActsLikeAsyncLock() {
+test("Semaphore can act like an AsyncLock", async function semaphoreActsLikeAsyncLock() {
 	const arr: number[] = [];
 
 	const resource = 3.14;
@@ -30,7 +30,7 @@ test(async function semaphoreActsLikeAsyncLock() {
 	assertEquals(arr, [resource, 1, 2, resource, 3, 4]);
 });
 
-test(async function semaphoreActsAppropriateWithCount2() {
+test("Semaphore acts appropriate with count 2", async function semaphoreActsAppropriateWithCount2() {
 	const arr: number[] = [];
 	const sleepTime = 1;
 
