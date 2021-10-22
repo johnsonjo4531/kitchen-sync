@@ -10,6 +10,6 @@ beforeAll(async function () {
 for (let i = 0; i < 1000; ++i) {
 	test("" + i, async function threePlusTwo(assert) {
 		await sleep(i);
-		assert(foo, 3);
+		assert(foo, 4);
 	});
 }

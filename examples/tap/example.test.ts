@@ -1,4 +1,4 @@
-import { test, beforeAll, afterAll, afterEach, beforeEach } from "./tap";
+import { test, beforeAll, afterAll, afterEach, beforeEach } from "./tap.ts";
 import { sleep } from "kitchen-sync";
 
 const foo = 2;

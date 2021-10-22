@@ -22,7 +22,7 @@ function captureConsole() {
 	return {
 		capture() {
 			(globalThis as any).console = new Proxy(self.console, {
-				get(target, property: keyof __console.Console, receiver) {
+				get(target, property: keyof Console, receiver) {
 					return new Proxy(target[property] as any, {
 						apply(target: CallableFunction, thisArg: any, argArray: any[]) {
 							logs.push({
